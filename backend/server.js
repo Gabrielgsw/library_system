@@ -1,15 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const mysql = require("mysql");
+import express from 'express'
 
 const app = express();
 
-app.use(cors());
-
-app.get("/",(req,res) => {
-    res.json("Test");
+app.get('/books',(req,res) =>{
+    res.send('Teste');
 })
 
-app.listen(8081, ( )=> {
-    console.log("listando");
-})
+app.listen(3000);
