@@ -46,12 +46,27 @@ app.post('/user',async (req,res) =>{
 })
 
 
-//Get
+//Get books
 app.get('/books',async(req,res) =>{
 
-    const livros = await prisma.book.findMany()
+    let books = []
 
-    res.status(200).json(livros);
+    if(req.query){
+        books = await prisma.book.findMany({
+            where: {
+                title: req.query.title,
+                autor: req.query.autor,
+                description: req.query.description
+            }
+        })
+        
+    }else{
+        books = await prisma.book.findMany()
+    }
+
+    
+
+    res.status(200).json(books);
 })
 
 
